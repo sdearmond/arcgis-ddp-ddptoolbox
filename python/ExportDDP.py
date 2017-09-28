@@ -32,7 +32,13 @@ try:
     #Export pages
     arcpy.AddMessage("   Exporting pages:")
     for myPage in pageLst: #This bit goes through each name in the page list and...
+
+        #This removes quote marks out of the page name
+        if myPage[0] == "'" and myPage[-1] == "'":
+            myPage = myPage[1:-1]
+
         arcpy.AddMessage("      " + str(myPage))
+
         ddp.currentPageID = ddp.getPageIDFromName(myPage)
 
         if outType == "png":
